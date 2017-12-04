@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Who's Your Spirit Pokemon?</title>
+		<!-- Latest compiled and minified JavaScript -->
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	</head>
+	<body>
+		<!-- https://kyleschaeffer.com/development/css-font-size-em-vs-px-vs-pt-vs/ -->
+		<div class="surveycontainer" style="max-width:800px; padding: 1em; margin:0 auto">
+	 		<h1>Who's your spirit Pokemon?</h1>
+	 			<hr>
+	 		<p>Questions:</p>
+			
+			<!-- When form is submitted (button is clicked), form elements (<select>, <input>, <textarea>) are sent as form data -->
+			<!-- They are sent to the URL of the "action" attribute ("mating call" LOL)-->
+			<!-- The "method" attribute tells us whether to use "GET" or "POST" -->
+			<form class="surveyform" action="/api/pokemon/" method="POST">
+				<div class="form-group">
+					<label>Your mind is always buzzing with unexplored ideas and plans.</label>
+					<!-- form data is in the format {question1 : 3, question2 : 5} -->
+					<!-- name can use "name[]"" to define name as an "array" -->
+				    <select class="form-control" name="questions[]">
+					    <option value="1">1 (Strongly Agree)</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5 (Strongly Disagree)</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>You love to be active.</label>
+				    <select class="form-control" name="questions[]">
+					    <option value="1">1 (Strongly Agree)</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5 (Strongly Disagree)</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>You're quick on the draw.</label>
+				    <select class="form-control" name="questions[]">
+					    <option value="1">1 (Strongly Agree)</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5 (Strongly Disagree)</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>You're more of a leader than a follower'.</label>
+				    <select class="form-control" name="questions[]">
+					    <option value="1">1 (Strongly Agree)</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5 (Strongly Disagree)</option>
+					</select>
+				</div>	
+				<div class="form-group">
+					<label>You would rather stay home than go out.</label>
+				    <select class="form-control" name="questions[]">
+					    <option value="1">1 (Strongly Agree)</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5 (Strongly Disagree)</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>You love to play jokes on, or mess with your friends.</label>
+				    <select class="form-control" name="questions[]">
+					    <option value="1">1 (Strongly Agree)</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5 (Strongly Disagree)</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>You generally learn new concepts quickly.</label>
+				    <select class="form-control" name="questions[]">
+					    <option value="1">1 (Strongly Agree)</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5 (Strongly Disagree)</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>You have a good sense of emotional awareness.</label>
+				    <select class="form-control" name="questions[]">
+					    <option value="1">1 (Strongly Agree)</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5 (Strongly Disagree)</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>You are open-minded.</label>
+				    <select class="form-control" name="questions[]">
+					    <option value="1">1 (Strongly Agree)</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5 (Strongly Disagree)</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>You have strong convictions and always stick to them.</label>
+				    <select class="form-control" name="questions[]">
+					    <option value="1">1 (Strongly Agree)</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5 (Strongly Disagree)</option>
+					</select>
+				</div>
+
+
+			    <button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+
+			<div class="pokemon-modal modal fade">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">Your spirit Pokemon is...</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <div style="text-align:center;">
+			        	<h2>Name: <span class="pokemon-name"></span>
+			        	</h2>
+			        	<img class="pokemon-image" />
+			        </div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+		</div>
+
+		<script
+  			src="https://code.jquery.com/jquery-3.2.1.js"
+  			integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  			crossorigin="anonymous">	
+  		</script>		
+
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+		</script>
+
+		<script type="text/javascript">
+
+		    // Question: What does this code do?
+		    $(".surveyform").on("submit", function(event) {
+		        event.preventDefault();
+
+		        var formData = $(".surveyform").serializeArray(); // get the form data
+
+		        // This is what the server is expecting (server "language")
+		        // if we are not in the format [{name : 'name', value : 'value'}]
+		        // then jQuery will convert our data to it automatically
+
+		        // formData.push({
+		        // 	name : 'kevin',
+		        // 	value : 'is awesome'
+		        // });
+
+		        // Ajax POST "mating call", send to server
+		        $.post("/api/pokemon/", formData).done(function(pokemon) {
+		        	// Response from server
+		            $('.pokemon-name').html(pokemon.name)
+		            $('.pokemon-image').attr("src", pokemon.photo);
+		            $('.pokemon-modal').modal();
+		        });
+
+		    });
+	    </script>
+		
+	</body>
+</html>
